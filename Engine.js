@@ -2,6 +2,7 @@ window.onload = function main() {
     //Create Buttons
     var start = document.createElement('button');
     var stop = document.createElement('button');
+    var brake = document.createElement('br');
     //Creating Squares
     var big = document.createElement('big');
     var small = document.createElement('small');
@@ -11,6 +12,7 @@ window.onload = function main() {
     var body = document.getElementById('body');
     body.appendChild(start);
     body.appendChild(stop);
+    body.appendChild(brake);
     body.appendChild(big);
     big.appendChild(small);
 //Describe big square
@@ -18,9 +20,9 @@ window.onload = function main() {
     big.style.height = '350px';
     big.style.border = '1px solid';
     big.style.backgroundColor = 'aqua';
-    big.style.margin = '50px';
+    //big.style.margin = '50px';
     big.style.margin = '2px';
-    big.style.top = '10px';
+    //big.style.top = '50px';
     big.style.position = 'absolute';
 //Describe small square
     small.style.width = '50px';
@@ -30,32 +32,43 @@ window.onload = function main() {
     small.style.position = 'absolute';
     small.style.left = '0px';
     small.style.top = '0px';
+
     //Event handlers
+    // function trueFalse() {
+    //     return true;
+    // }
+
+    //stop.addEventListener('click', !trueFalse);
     start.addEventListener('click', function Circle() {
-            var xAxis = 0;
-            var yAxis = xAxis;
-
+            var xPos = 0;
+            var yPos = xPos;
+//stop.addEventListener('click',!trueFalse )
             while (true) {
-                if (xAxis < 400 && xAxis == 0 && yAxis < 395 && yAxis == 0) {
-                    xAxis += 5;
-                    small.style.left = xAxis + 'px';
-                }
-                if (xAxis == 395 && xAxis > 0 && yAxis == 395 && yAxis > 0) {
-                    xAxis -= 5;
-                    small.style.left = xAxis + 'px';
-                }
+                if (xPos == 0 && yPos == 0 || xPos <= 350) {
+                    for (; xPos <= 350; xPos + 5) {
+                        small.style.left = xPos + 'px';
+                    }
 
-                if (xAxis == 395 && xAxis > 0 && yAxis < 395 && yAxis == 0) {
-                    yAxis += 5;
-                    small.style.top = yAxis + 'px';
                 }
-
-                if (xAxis < 395 && xAxis == 0 && yAxis < 395 && yAxis == 0) {
-                    yAxis -= 5;
-                    small.style.top = yAxis + 'px';
-                }
+                // if (xPos == 395 && xPos > 0 && yPos == 395 && yPos > 0) {
+                //     xPos -= 5;
+                //     small.style.left = xPos + 'px';
+                // }
+                //
+                // if (xPos == 395 && xPos > 0 && yPos < 395 && yPos == 0) {
+                //     yPos += 5;
+                //     small.style.top = yPos + 'px';
+                // }
+                //
+                // if (xPos < 395 && xPos == 0 && yPos < 395 && yPos == 0) {
+                //     yPos -= 5;
+                //     small.style.top = yPos + 'px';
+                // }
             }
+            // stop.addEventListener('click', !trueFalse);
         }
     )
     ;
+
 };
+
