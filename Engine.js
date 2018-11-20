@@ -1,74 +1,74 @@
-window.onload = function main() {
-    //Create Buttons
-    var start = document.createElement('button');
-    var stop = document.createElement('button');
-    var brake = document.createElement('br');
-    //Creating Squares
-    var big = document.createElement('big');
-    var small = document.createElement('small');
-    start.innerHTML = 'Start';
+var a = 0;
+
+
+let big = document.createElement("div");
+let small = document.createElement("div");
+let l = 0, t = 0, posi = 'right', set, st;
+window.onload = function createButtons() {
+
+    const stop = document.createElement('button');
+    const start = document.createElement('button');
     stop.innerHTML = 'Stop';
-// //
-    var body = document.getElementById('body');
-    body.appendChild(start);
-    body.appendChild(stop);
-    body.appendChild(brake);
-    body.appendChild(big);
+    start.innerHTML = 'Start';
+    start.style.marginRight = '116px'
+    document.body.appendChild(start);
+    document.body.appendChild(stop);
+    ///Styling of big square
+    big.style.width = "200px";
+    big.style.height = "200px";
+    big.style.position = "relative";
+    big.style.border = "solid";
+    big.style.marginTop = "10px";
+    document.body.appendChild(big);
+    ///Styling of small square
+    small.style.width = "30px";
+    small.style.height = "30px";
+    small.style.position = "relative";
+    small.style.backgroundColor = "red";
+    //small.style.marginBottom = "10px";
+    /////////////
     big.appendChild(small);
-//Describe big square
-    big.style.width = '350px';
-    big.style.height = '350px';
-    big.style.border = '1px solid';
-    big.style.backgroundColor = 'aqua';
-    //big.style.margin = '50px';
-    big.style.margin = '2px';
-    //big.style.top = '50px';
-    big.style.position = 'absolute';
-//Describe small square
-    small.style.width = '50px';
-    small.style.height = '50px';
-    small.style.border = '1px solid';
-    small.style.backgroundColor = 'green';
-    small.style.position = 'absolute';
-    small.style.left = '0px';
-    small.style.top = '0px';
 
-    //Event handlers
-    // function trueFalse() {
-    //     return true;
-    // }
+    //start.addEventListener('click', set = () => setInterval(f, 150));
+    start.addEventListener('click', changer(1));
+    stop.addEventListener('click', changer(2));
 
-    //stop.addEventListener('click', !trueFalse);
-    start.addEventListener('click', function Circle() {
-            var xPos = 0;
-            var yPos = xPos;
-//stop.addEventListener('click',!trueFalse )
-            while (true) {
-                if (xPos == 0 && yPos == 0 || xPos <= 350) {
-                    for (; xPos <= 350; xPos + 5) {
-                        small.style.left = xPos + 'px';
-                    }
-
-                }
-                // if (xPos == 395 && xPos > 0 && yPos == 395 && yPos > 0) {
-                //     xPos -= 5;
-                //     small.style.left = xPos + 'px';
-                // }
-                //
-                // if (xPos == 395 && xPos > 0 && yPos < 395 && yPos == 0) {
-                //     yPos += 5;
-                //     small.style.top = yPos + 'px';
-                // }
-                //
-                // if (xPos < 395 && xPos == 0 && yPos < 395 && yPos == 0) {
-                //     yPos -= 5;
-                //     small.style.top = yPos + 'px';
-                // }
+    function f() {
+        if (posi === 'right') {
+            l += 20;
+            if (l > 200) {
+                posi = 'down';
             }
-            // stop.addEventListener('click', !trueFalse);
         }
-    )
-    ;
+        else if (posi === 'down') {
+            t += 20;
+            if (t > 200) {
+                posi = 'left';
+            }
+        }
+        else if (posi === 'left') {
+            l -= 20;
+            if (l > 200) {
+                posi = 'up';
+            }
+        }
+        else if (posi === 'up') {
+            t -= 20;
+            if (l > 200) {
+                posi = 'right';
+            }
+        }
+        small.style.top = t + 'px';
+        small.style.left = l + 'px';
+    }
 
+    function changer(a) {
+          if (a % 2 == 0) {
+            clearInterval(set)
+        }
+        else {
+            clearInterval(set)
+            set = setInterval(f, 150)
+        }
+    }
 };
-
